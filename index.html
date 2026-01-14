@@ -1,119 +1,1503 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Yusuf Berki YAZICIOĞLU's personal web page" />
-    <meta name="author" content="Yusuf Berki YAZICIOĞLU" />
-    <title>Yusuf Berki YAZICIOĞLU</title>
-    <link rel="icon" type="image/x-icon" href="dist/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="dist/css/styles.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yusuf Berki YAZICIOĞLU - Lead Data Scientist, AI Engineer, Builder of Things">
+    <meta name="author" content="Yusuf Berki YAZICIOĞLU">
+    <meta name="keywords" content="data scientist, machine learning, AI, computer vision, python, developer">
+    <meta property="og:title" content="Yusuf Berki YAZICIOĞLU">
+    <meta property="og:description" content="Lead Data Scientist • AI Engineer • Builder of Things">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yusufberki.net">
+    <title>yusufberki.net</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Ctext x='2' y='22' font-family='monospace' font-weight='bold' font-size='12' fill='%2300ff9f'%3E%3EYB%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --text-primary: #e8e8e8;
+            --text-secondary: #8b8b9e;
+            --text-muted: #5a5a6e;
+            --accent-green: #00ff9f;
+            --accent-amber: #ffb800;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-pink: #ff6b9d;
+            --border-color: #2a2a3a;
+            --glow-green: 0 0 20px rgba(0, 255, 159, 0.3);
+            --glow-amber: 0 0 20px rgba(255, 184, 0, 0.3);
+        }
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47587340-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        gtag('config', 'UA-47587340-2');
-    </script>
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: 9999;
+            opacity: 0.3;
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            z-index: 9998;
+        }
+
+        .container {
+            max-width: 1100px;
+            min-width: 80%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '>';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s, text-shadow 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: './';
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+            text-shadow: var(--glow-green);
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .ascii-art {
+            margin:10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            
+            line-height: 1.2;
+            color: var(--accent-green);
+            opacity: 0.15;
+            position: absolute;
+            top: 100px;
+            right: 0;
+            white-space: pre;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .greeting {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent-amber);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .greeting::before {
+            content: '//';
+            color: var(--text-muted);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 .first-name {
+            color: var(--text-primary);
+        }
+
+        .hero h1 .last-name {
+            color: var(--accent-green);
+            text-shadow: var(--glow-green);
+        }
+
+        .title-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .title-line span {
+            color: var(--accent-cyan);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-amber);
+            text-shadow: var(--glow-amber);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            box-shadow: var(--glow-green);
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-tag::before {
+            content: '##';
+            color: var(--text-muted);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-green), var(--accent-cyan), var(--accent-purple));
+            opacity: 0.3;
+        }
+
+        .experience-item {
+            padding-left: 32px;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: var(--glow-green);
+        }
+
+        .experience-item.past::before {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .exp-company {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .exp-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-amber);
+            background: rgba(255, 184, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        .exp-role {
+            font-size: 15px;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
+
+        .exp-highlights {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exp-highlights li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .exp-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+        }
+
+        .skill-category {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-pink);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category::before {
+            content: '$';
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-status::before {
+            content: '●';
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .project-status.archived {
+            color: var(--text-muted);
+        }
+
+        .project-status.archived::before {
+            animation: none;
+        }
+
+        .project-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .project-role {
+            font-size: 13px;
+            color: var(--accent-amber);
+            margin-bottom: 16px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .project-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-green);
+            text-shadow: var(--glow-green);
+        }
+
+        .project-link::after {
+            content: '↗';
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .project-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .project-icon-link:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .project-icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Projects Category */
+        .projects-category {
+            margin-bottom: 48px;
+        }
+
+        .projects-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .projects-category-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .projects-category-title::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .projects-category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .category-icon {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Talks Section */
+        .talks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .talk-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .talk-item:hover {
+            border-color: var(--accent-amber);
+            transform: translateX(8px);
+        }
+
+        .talk-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .talk-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .talk-venue {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .talk-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-amber);
+            white-space: nowrap;
+        }
+
+        /* Blog Section */
+        .blog-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .blog-loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .loading-text::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        .article-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .article-thumbnail {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: var(--bg-tertiary);
+        }
+
+        .article-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-amber);
+            margin-bottom: 8px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-excerpt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .article-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .article-link:hover {
+            color: var(--accent-green);
+            text-shadow: var(--glow-green);
+        }
+
+        .article-link::after {
+            content: '→';
+        }
+
+        .blog-cta {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .blog-error {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .blog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .blog-btn:hover {
+            box-shadow: var(--glow-green);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-content a {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-ascii {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 20px;
+            opacity: 0.5;
+        }
+
+        /* Terminal-style contact */
+        .terminal-contact {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 48px;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-line {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .terminal-line .prompt {
+            color: var(--accent-green);
+        }
+
+        .terminal-line .command {
+            color: var(--accent-cyan);
+        }
+
+        .terminal-line .output {
+            color: var(--text-primary);
+            padding-left: 20px;
+        }
+
+        .terminal-line a {
+            color: var(--accent-amber);
+            text-decoration: none;
+        }
+
+        .terminal-line a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile hamburger */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--bg-secondary);
+                padding: 20px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .ascii-art {
+                display: none;
+            }
+
+            .stats {
+                gap: 24px;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+
+            .talk-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                    src="dist/img/profile.png" alt="..." /></span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#talks">talks</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#videos">videos</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://blog.yusufberki.net/">blog</a>
-                </li>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">yusufberki@dev:~</a>
+            <div class="mobile-toggle" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#experience">experience</a></li>
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#talks">talks</a></li>
+                <li><a href="#blog">blog</a></li>
             </ul>
         </div>
     </nav>
-    <!-- Page Content-->
-    <div class="container-fluid p-0">
-        <!-- About-->
-        <section class="resume-section" id="about">
-            <div class="resume-section-content">
-                <h1 class="mb-0">
-                    YUSUF BERKİ
-                    <span class="text-primary">YAZICIOĞLU</span>
-                </h1>
-                <div class="subheading mb-5">
-                    Data Scientist, Computer Vision Engineer, Software Developer
-                </div>
-                <p class="lead mb-5">
-                <div class="social-icons">
-                    <a class="social-icon" href="mailto:mail@yusufberki.net"><i class="fa fa-envelope"></i></a>
-                    <a class="social-icon" href="https://www.linkedin.com/in/yusufberki/"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a class="social-icon" href="https://github.com/YusufBerki"><i class="fab fa-github"></i></a>
-                    <a class="social-icon" href="https://twitter.com/yusufberki"><i class="fab fa-twitter"></i></a>
-                    <a class="social-icon" href="https://stackoverflow.com/users/10395731/yusuf-berki-yazicioglu"><i
-                            class="fab fa-stack-overflow"></i></a>
-                    <a class="social-icon" href="https://www.instagram.com/yusufberki.py/"><i
-                            class="fab fa-instagram"></i></a>
-                    <a class="social-icon" href="https://www.youtube.com/c/YusufBerkiYAZICIO%C4%9ELU"><i
-                            class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </section>
 
-        <hr class="m-0" />
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <pre class="ascii-art">
+                        01011001 01110101 01110011 01110101 01100110 00100000 
+                        01000010 01100101 01110010 01101011 01101001 00100000 
+                        01011001 01000001 01011010 01001001 01000011 01001001 
+                        01001111 11000100 10011110 01001100 01010101 00101110
 
-        <section class="resume-section" id="talks">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Talks</h2>
-                <ul class="fa-ul mb-0">
-                    <li>
-                        <span class="fa-li"><i class="fas fa-microphone-lines text-warning"></i></span>
-                        Speaker, 2021 @ <a href="https://www.youtube.com/watch?v=0SLb0QobG-4&t=3012s">
-                            AI - TECH | Google Developer Student Club Dumlupınar
+                        00100000 01011001 01100101 01110011 00101100 00100000  
+                        01001001 00100000 01110010 01100101 01100001 01101100  
+                        01101100 01111001 00100000 01101010 01110101 01110011  
+                        01110100 00100000 01110111 01110010 01101111 01110100  
+                        01100101 00100000 01101101 01111001 00100000 01101110  
+                        01100001 01101101 01100101 00100000 00111010 00101001
+                    </pre>
+                    <h1>
+                        <span class="first-name">Yusuf Berki</span><br>
+                        <span class="last-name">YAZICIOĞLU</span>
+                    </h1>
+                    <p class="title-line">Lead Data Scientist <span>•</span> AI Engineer <span>•</span> Entrepreneur</p>
+                   
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-value">7+</span>
+                            <span class="stat-label">Years in AI/ML</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">17+</span>
+                            <span class="stat-label">Years in Development</span>
+                        </div>
+                    
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/YusufBerki" target="_blank" rel="noopener" class="social-link">
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
                         </a>
-                    </li>
-                    <li>
-                        <span class="fa-li"><i class="fas fa-microphone-lines text-warning"></i></span>
-                        Speaker, 2019 @ <a
-                            href="https://discover.events.com/tr/istanbul/sisli/e/business/is-unyasinda-yapay-zeka-uygulamalari-ile-dijital-ousu-zirvesi-ucretli-point-hotel-barbaros-321794492">
-                            İş Dünyasında Yapay Zeka Uygulamaları ile Dijital Dönüşüm Zirvesi
+                        <a href="https://www.linkedin.com/in/yusufberki/" target="_blank" rel="noopener" class="social-link">
+                            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn
                         </a>
-                    </li>
-                </ul>
+                        <a href="mailto:mail@yusufberki.net" class="social-link">
+                            <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">PROJECTS</p>
+                    <h2 class="section-title">Things I've Built</h2>
+                </div>
+
+                <!-- Personal Projects -->
+                <div class="projects-category">
+                    <h3 class="projects-category-title">
+                        <span class="category-icon">~</span> Personal Projects
+                    </h3>
+                    <div class="projects-grid">
+                        <div class="project-card reveal">
+                            <p class="project-status">ACTIVE</p>
+                            <h3 class="project-name">Egolio</h3>
+                            <p class="project-role">Founder & Developer</p>
+                            <p class="project-desc">
+                                Social platform for consumable content—movies, series, games, books. 
+                                Complex recommendation algorithms, timeline systems, big data architecture.
+                            </p>
+                          
+                            <div class="project-links">
+                                <a href="https://egolio.com/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.egolio.app" target="_blank" rel="noopener" class="project-icon-link" title="Android">
+                                    <svg viewBox="0 0 24 24"><path d="M17.523 15.341c-.5 0-.906.405-.906.906s.406.906.906.906.906-.405.906-.906-.406-.906-.906-.906zm-11.046 0c-.5 0-.906.405-.906.906s.406.906.906.906.906-.405.906-.906-.406-.906-.906-.906zm11.4-6.271l1.994-3.456a.413.413 0 00-.151-.564.413.413 0 00-.564.151l-2.02 3.5a12.243 12.243 0 00-5.136-1.1c-1.87 0-3.607.4-5.136 1.1l-2.02-3.5a.413.413 0 00-.564-.151.413.413 0 00-.151.564l1.994 3.456C2.686 10.906.5 14.103.5 17.846h23c0-3.743-2.186-6.94-5.623-8.776zM6.477 15.341z"/></svg>
+                                </a>
+                                <a href="https://apps.apple.com/us/app/egolio/id6590632158" target="_blank" rel="noopener" class="project-icon-link" title="iOS">
+                                    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">OPEN SOURCE</p>
+                            <h3 class="project-name">Streamlit JWT Authenticator</h3>
+                            <p class="project-role">Developer</p>
+                            <p class="project-desc">
+                                Open-source library for JWT authentication in Streamlit apps. 
+                                5,000+ developers reached.
+                            </p>
+                           
+                            <div class="project-links">
+                                <a href="https://github.com/YusufBerki/streamlit-jwt-authenticator" target="_blank" rel="noopener" class="project-icon-link" title="GitHub">
+                                    <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Projects -->
+                <div class="projects-category">
+                    <h3 class="projects-category-title">
+                        <span class="category-icon">/</span> Professional & Freelance
+                    </h3>
+                    <div class="projects-grid">
+                        <div class="project-card reveal">
+                            <p class="project-status">ACTIVE</p>
+                            <h3 class="project-name">ESTEL</h3>
+                            <p class="project-role">Head of Data Science / Founder Engineer</p>
+                            <p class="project-desc">
+                                AI-Powered Lead Generation for Tech Staffing. Transforms sourcing hours 
+                                into ranked, ready-to-close opportunities with verified buyer matching.
+                            </p>
+                            
+                            <div class="project-links">
+                                <a href="https://estel.tech/platform" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+
+                                <a href="https://www.linkedin.com/company/estel-platform/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">DEPLOYED</p>
+                            <h3 class="project-name">StockAIvisor</h3>
+                            <p class="project-role">Founder Engineer</p>
+                            <p class="project-desc">
+                                AI-powered stock analysis platform with roboadvisor and price prediction. 
+                                Auto-scaling on Azure, led team of 3 engineers for 2 years.
+                            </p>
+                           
+                            <div class="project-links">
+                                <a href="https://stockaivisor.com/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/showcase/stockaivisor/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">DEPLOYED</p>
+                            <h3 class="project-name">Traick</h3>
+                            <p class="project-role">MLOps Engineer</p>
+                            <p class="project-desc">
+                                Healthcare AI project deployed on AWS. GPU-accelerated Python backend, 
+                                .NET backend, React frontend.
+                            </p>
+                            
+                            <div class="project-links">
+                                <a href="https://traick.ai/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/traick/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">DEPLOYED</p>
+                            <h3 class="project-name">Engelsiz Çeviri</h3>
+                            <p class="project-role">Lead Data Scientist & Backend Developer</p>
+                            <p class="project-desc">
+                                Sign language translation app serving 1.6M+ users across 40+ corporate clients 
+                                (banks, airlines, municipalities).
+                            </p>
+                           
+                            <div class="project-links">
+                                <a href="https://www.signfordeaf.com/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/signfordeaf/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">DEPLOYED</p>
+                            <h3 class="project-name">CranioCatch</h3>
+                            <p class="project-role">Data Scientist</p>
+                            <p class="project-desc">
+                                Dental AI for tooth and palate disease detection. Trained on 4TB+ imagery, 
+                                achieved 97% accuracy. 20+ academic publications.
+                            </p>
+                           
+                            <div class="project-links">
+                                <a href="https://www.craniocatch.com/en/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/craniocatch/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card reveal">
+                            <p class="project-status archived">DEPLOYED</p>
+                            <h3 class="project-name">PDATA</h3>
+                            <p class="project-role">Lead Data Scientist & Backend Developer</p>
+                            <p class="project-desc">
+                                Automated ML platform commercialized with major clients including 
+                                cement company with $10B market cap. 200+ models across 35 industrial projects.
+                            </p>
+                            
+                            <div class="project-links">
+                                <a href="https://pdata.ai/en/" target="_blank" rel="noopener" class="project-icon-link" title="Website">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/pdataai/" target="_blank" rel="noopener" class="project-icon-link" title="LinkedIn">
+                                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="resume-section" id="videos">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Last Youtube Videos</h2>
-                <ul class="fa-ul mb-0" id="yt-videos">
+        <!-- Talks Section -->
+        <section id="talks">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">PUBLIC_SPEAKING</p>
+                    <h2 class="section-title">Talks & Presentations</h2>
+                </div>
 
+                <div class="talks-list">
+                    <a href="https://www.youtube.com/watch?v=0SLb0QobG-4&t=3012s" target="_blank" rel="noopener" class="talk-item reveal">
+                        <div class="talk-info">
+                            <span class="talk-title">AI-TECH Talk</span>
+                            <span class="talk-venue">Google Developer Student Club Dumlupınar • YouTube</span>
+                        </div>
+                        <span class="talk-date">Mar 2021</span>
+                    </a>
 
-                </ul>
+                    <div class="talk-item reveal">
+                        <div class="talk-info">
+                            <span class="talk-title">AI Applications in the Business World</span>
+                            <span class="talk-venue">Digital Transformation Summit • İstanbul, Türkiye</span>
+                        </div>
+                        <span class="talk-date">Sep 2019</span>
+                    </div>
+                </div>
             </div>
         </section>
-    </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="dist/js/scripts.js"></script>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-tag">WRITINGS</p>
+                    <h2 class="section-title">Blog & Articles</h2>
+                </div>
+
+                <div class="blog-articles" id="mediumArticles">
+                    <div class="blog-loading">
+                        <span class="loading-text">Fetching articles</span>
+                    </div>
+                </div>
+
+                <div class="blog-cta">
+                    <a href="https://medium.com/@yusufberki" target="_blank" rel="noopener" class="blog-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                        </svg>
+                        View All on Medium →
+                    </a>
+                </div>
+
+                <!-- Terminal-style contact -->
+                <div class="terminal-contact reveal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">yusufberki@dev:~$</span> <span class="command">git config user.email                        </span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output"><a href="mailto:mail@yusufberki.net">mail@yusufberki.net</a></span>
+                    </div>
+                    <div class="terminal-line" style="margin-top: 16px;">
+                        <span class="prompt">yusufberki@dev:~$</span> <span class="command">bend ./spoon</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output" style="color: #ff5f56;">bend:</span> there is no ./spoon
+                    </div>
+                    <div class="terminal-line" style="margin-top: 16px;">
+                        <span class="prompt">yusufberki@dev:~$</span> <span class="command">mv * /dev/null</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-content">
+                Built with coffee and &lt;code&gt; by <a href="https://github.com/YusufBerki">Yusuf Berki YAZICIOĞLU</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Console easter egg for tech geeks
+        console.log(`
+%c
+    ╔═══════════════════════════════════════════════════════╗
+    ║                                                       ║
+    ║   Wake up, Neo...                                     ║
+    ║                                                       ║
+    ║   The Matrix has you...                               ║
+    ║                                                       ║
+    ║   Follow the white rabbit.                            ║
+    ║                                                       ║
+    ║   Knock, knock, Neo.                                  ║
+    ║                                                       ║
+    ╚═══════════════════════════════════════════════════════╝
+`, 'color: #00ff9f; font-family: monospace;');
+
+        // Fetch Medium articles via RSS
+        async function fetchMediumArticles() {
+            const container = document.getElementById('mediumArticles');
+            const MEDIUM_USERNAME = 'yusufberki'; // Your Medium username
+            const RSS_URL = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
+            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data.status !== 'ok') {
+                    throw new Error('Failed to fetch articles');
+                }
+                
+                // Get first 3 articles
+                const articles = data.items.slice(0, 3);
+                
+                if (articles.length === 0) {
+                    container.innerHTML = `
+                        <div class="blog-error">
+                            <p>No articles found. Check back soon!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = articles.map(article => {
+                    // Extract thumbnail from content or use placeholder
+                    const thumbnailMatch = article.content.match(/<img[^>]+src="([^">]+)"/);
+                    const thumbnail = thumbnailMatch ? thumbnailMatch[1] : article.thumbnail || '';
+                    
+                    // Strip HTML tags from description
+                    const excerpt = article.description
+                        .replace(/<[^>]*>/g, '')
+                        .replace(/&nbsp;/g, ' ')
+                        .trim()
+                        .substring(0, 150) + '...';
+                    
+                    // Format date
+                    const date = new Date(article.pubDate).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    
+                    return `
+                        <article class="article-card reveal visible">
+                            ${thumbnail ? `<img src="${thumbnail}" alt="" class="article-thumbnail" loading="lazy">` : ''}
+                            <div class="article-content">
+                                <span class="article-date">${date}</span>
+                                <h3 class="article-title">${article.title}</h3>
+                                <p class="article-excerpt">${excerpt}</p>
+                                <a href="${article.link}" target="_blank" rel="noopener" class="article-link">Read Article</a>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Error fetching Medium articles:', error);
+                container.innerHTML = `
+                    <div class="blog-error">
+                        <p>Unable to load articles right now.</p>
+                        <a href="https://medium.com/@${MEDIUM_USERNAME}" target="_blank" rel="noopener" class="blog-btn" style="margin-top: 16px; display: inline-flex;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                            </svg>
+                            Visit Medium Profile
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Load articles when page loads
+        document.addEventListener('DOMContentLoaded', fetchMediumArticles);
+    </script>
 </body>
-
 </html>
